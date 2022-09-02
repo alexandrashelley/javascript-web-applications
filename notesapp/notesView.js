@@ -15,7 +15,9 @@ class NotesView {
   }
 
   displayNotes() {   
-    const notes = this.model.getNotes();
+    // const notes = this.model.getNotes();
+    const notes = this.api.loadNotes();
+    console.log(notes)
 
     notes.forEach((note) => {
       let div = document.createElement('div');

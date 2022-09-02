@@ -84,4 +84,20 @@ const NotesApi = require('./notesApi');
 
 
     })
+
+    it('displays the notes from the API', () => {
+      // NotesApi.mockClear()
+      const mockApi = new NotesApi
+      mockApi.loadNotes.mockImplementation(() => ["This note is coming from the server", "hello"]);
+      // const mockApi = {
+      //   loadNotes: (cb) => cb(["This note is coming from the server"])
+      // }
+      console.log(mockApi.loadNotes())
+      const model = new NotesModel;
+      
+      const view = new NotesView(model, mockApi);
+      view.displayNotesFromApi()
+      expect(document.querySelectorAll(".note")).toBe(["This note is coming from the server", "hello"])
+    });
+  })
  });
